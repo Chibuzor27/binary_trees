@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include "binary_trees.h"
 
-int depth(binary_tree_t *tree);
-int max(int num1, int num2);
+int depth(binary_tree_t *);
+int max(int, int);
 
 /**
  * binary_tree_is_perfect - function
@@ -21,10 +21,16 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	if (tree->left != NULL && tree->right != NULL)
 	{
-		return (binary_tree_is_perfect(tree->left) &&
-			binary_tree_is_perfect(tree->right) &&
-			depth(tree->left) == depth(tree->right));
+		if (depth(tree->left) != depth(tree->right))
+			return (0);
+
+		return (
+			binary_tree_is_perfect(tree->left) &&
+			binary_tree_is_perfect(tree->right)
+			);
 	}
+
+	return (1);
 }
 
 /**
@@ -37,7 +43,7 @@ int depth(binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	return (max(depth(tree->left), depth(tree, right)));
+	return (1 + max(depth(tree->left), depth(tree->right)));
 }
 
 /**
