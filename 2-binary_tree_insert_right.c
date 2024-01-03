@@ -3,12 +3,12 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_insert_left - function
+ * binary_tree_insert_right - function
  * @parent: arg
  * @value: arg
  * Return: new node
  */
-binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
+binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
 	binary_tree_t *node = NULL;
 
@@ -23,12 +23,13 @@ binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 	node->left = NULL;
 	node->right = NULL;
 	node->parent = NULL;
-	if (parent->left != NULL)
+
+	if (parent->right != NULL)
 	{
-		parent->left->parent = node;
-		node->left = parent->left;
+		parent->right->parent = node;
+		node->right = parent->right;
 	}
 	node->parent = parent;
-	parent->left = node;
+	parent->right = node;
 	return (node);
 }
